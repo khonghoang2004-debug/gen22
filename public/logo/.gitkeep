@@ -1,0 +1,6 @@
+# This file ensures the logo directory is tracked by git
+# Place your logo files here:
+# - logo.png (required fallback)
+# - logo.svg (preferred, will be used if available)
+# - logo-white.png (optional, for dark backgrounds)
+# - logo-dark.png (optional, for light backgrounds)
