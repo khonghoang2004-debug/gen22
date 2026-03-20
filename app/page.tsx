@@ -126,6 +126,34 @@ export default function Home() {
                 nápoj zdarma, konzultace, střih, styling
               </p>
             </div>
+
+            {/* Střih strojkem */}
+            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-lg font-semibold text-white">Střih strojkem</h3>
+                <div className="text-lg font-bold text-white whitespace-nowrap">
+                  500 Kč
+                </div>
+              </div>
+              <div className="border-t border-neutral-800 my-3"></div>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
+                pouze strojkem, nápoj zdarma, konzultace, mytí, styling
+              </p>
+            </div>
+
+            {/* Střih dlouhých vlasů */}
+            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-lg font-semibold text-white">Střih dlouhých vlasů</h3>
+                <div className="text-lg font-bold text-white whitespace-nowrap">
+                  650 Kč
+                </div>
+              </div>
+              <div className="border-t border-neutral-800 my-3"></div>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
+                vlasy delší než uši, nápoj zdarma, konzultace, střih, mytí, styling
+              </p>
+            </div>
           </div>
         </div>
       </section>
