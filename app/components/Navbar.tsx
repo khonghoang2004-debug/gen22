@@ -2,8 +2,45 @@
 
 import { useState, useEffect } from 'react'
 import Logo from './Logo'
+import { locales, type Locale, type Dictionary } from '../i18n/translations'
 
-export default function Navbar() {
+const LOCALE_LABELS: Record<Locale, string> = {
+  cs: 'CZ',
+  en: 'EN',
+  de: 'DE',
+}
+
+function LanguageSwitcher({ lang, compact = false }: { lang: Locale; compact?: boolean }) {
+  return (
+    <div
+      className={`flex items-center rounded-full border border-neutral-700 overflow-hidden ${
+        compact ? 'text-[11px]' : 'text-xs'
+      }`}
+    >
+      {locales.map((locale) => (
+        <a
+          key={locale}
+          href={`/${locale}`}
+          aria-current={locale === lang ? 'page' : undefined}
+          className={`${compact ? 'px-2 py-1' : 'px-2.5 py-1.5'} font-semibold transition-colors ${
+            locale === lang
+              ? 'bg-white text-black'
+              : 'text-gray-300 hover:text-white'
+          }`}
+        >
+          {LOCALE_LABELS[locale]}
+        </a>
+      ))}
+    </div>
+  )
+}
+
+interface NavbarProps {
+  lang: Locale
+  nav: Dictionary['nav']
+}
+
+export default function Navbar({ lang, nav }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -45,33 +82,35 @@ export default function Navbar() {
               onClick={() => scrollToSection('cenik')}
               className="text-white hover:text-gray-300 transition-colors font-medium"
             >
-              Ceník
+              {nav.pricing}
             </button>
             <button
               onClick={() => scrollToSection('kontakt')}
               className="text-white hover:text-gray-300 transition-colors font-medium"
             >
-              Kontakt
+              {nav.contact}
             </button>
+            <LanguageSwitcher lang={lang} />
             <a
               href="https://gen22barbershop.reservio.com/booking"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-100 hover:scale-105 transition-all duration-300"
             >
-              Rezervovat
+              {nav.book}
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile: language switcher + booking button */}
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher lang={lang} compact />
             <a
               href="https://gen22barbershop.reservio.com/booking"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-black px-4 py-1.5 rounded-full font-semibold text-xs min-h-[36px] flex items-center justify-center active:opacity-80 transition-opacity"
             >
-              Rezervovat
+              {nav.book}
             </a>
           </div>
         </div>

@@ -1,11 +1,17 @@
-import Navbar from './components/Navbar'
-import Logo from './components/Logo'
+import Navbar from '../components/Navbar'
+import Logo from '../components/Logo'
+import { dictionaries, isLocale, type Locale } from '../i18n/translations'
 
-export default function Home() {
+const BOOKING_URL = 'https://gen22barbershop.reservio.com/booking'
+
+export default function Home({ params }: { params: { lang: string } }) {
+  const lang: Locale = isLocale(params.lang) ? params.lang : 'cs'
+  const dict = dictionaries[lang]
+
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Navbar */}
-      <Navbar />
+      <Navbar lang={lang} nav={dict.nav} />
 
       {/* Hero Section - Split Layout */}
       <section id="hero" className="relative bg-black">
@@ -31,22 +37,22 @@ export default function Home() {
 
               {/* Subtitle */}
               <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-[320px] mx-auto mt-2 mb-3">
-                Precizní střih. Moderní styl. Skutečný zážitek.
+                {dict.hero.tagline}
               </p>
 
               {/* Primary CTA Button */}
               <a
-                href="https://gen22barbershop.reservio.com/booking"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full max-w-[320px] bg-white text-black py-3 text-lg font-semibold rounded-xl shadow-lg active:scale-95 transition-all duration-200 text-center"
               >
-                Rezervovat termín
+                {dict.hero.cta}
               </a>
 
               {/* Trust Line */}
               <p className="text-xs text-gray-500 mt-1 text-center">
-                ✔ Rezervace během 30 sekund
+                {dict.hero.trust}
               </p>
             </div>
           </div>
@@ -59,101 +65,36 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold tracking-wide mb-4">
-              Ceník služeb
+              {dict.pricing.title}
             </h2>
             <div className="w-16 h-[1px] bg-gray-700 mx-auto"></div>
           </div>
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6">
-            {/* Pánský střih */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Pánský střih</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  550 Kč
+            {dict.pricing.services.map((service) => (
+              <div
+                key={service.name}
+                className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95 relative"
+              >
+                {service.popular && (
+                  <div className="absolute -top-2 -right-2">
+                    <span className="text-xs px-2 py-1 bg-white text-black rounded-full font-semibold">
+                      {dict.pricing.popularBadge}
+                    </span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-semibold text-white">{service.name}</h3>
+                  <div className="text-lg font-bold text-white whitespace-nowrap">
+                    {service.price}
+                  </div>
                 </div>
+                <div className="border-t border-neutral-800 my-3"></div>
+                <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
+                  {service.description}
+                </p>
               </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                nápoj zdarma, konzultace, střih, úprava obočí, mytí vlasů, styling
-              </p>
-            </div>
-
-            {/* Úprava vousů */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Úprava vousů</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  400 Kč
-                </div>
-              </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                nápoj zdarma, konzultace, holení vousů, styling vousů
-              </p>
-            </div>
-
-            {/* Pánský střih + vousy - BEST VALUE */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95 relative">
-              {/* Badge */}
-              <div className="absolute -top-2 -right-2">
-                <span className="text-xs px-2 py-1 bg-white text-black rounded-full font-semibold">
-                  Nejoblíbenější
-                </span>
-              </div>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Pánský střih + vousy</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  950 Kč
-                </div>
-              </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                nápoj zdarma, konzultace, střih, holení vousů, kompletní styling
-              </p>
-            </div>
-
-            {/* Dětský střih */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Dětský střih</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  450 Kč
-                </div>
-              </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                nápoj zdarma, konzultace, střih, styling
-              </p>
-            </div>
-
-            {/* Střih strojkem */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Střih strojkem</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  500 Kč
-                </div>
-              </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                pouze strojkem, nápoj zdarma, konzultace, mytí, styling
-              </p>
-            </div>
-
-            {/* Střih dlouhých vlasů */}
-            <div className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Střih dlouhých vlasů</h3>
-                <div className="text-lg font-bold text-white whitespace-nowrap">
-                  650 Kč
-                </div>
-              </div>
-              <div className="border-t border-neutral-800 my-3"></div>
-              <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
-                vlasy delší než uši, nápoj zdarma, konzultace, střih, mytí, styling
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -163,16 +104,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6 md:space-y-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide leading-tight">
-              Rezervujte si svůj termín ještě dnes
+              {dict.cta.title}
             </h2>
             <div className="pt-2 md:pt-4">
               <a
-                href="https://gen22barbershop.reservio.com/booking"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block md:inline-block w-full md:w-auto border-2 border-white text-white px-8 py-4 text-lg font-semibold rounded-xl md:rounded-full min-h-[48px] flex items-center justify-center hover:bg-white hover:text-black active:opacity-80 transition-all duration-300"
               >
-                Rezervovat termín
+                {dict.cta.button}
               </a>
             </div>
           </div>
@@ -183,7 +124,7 @@ export default function Home() {
       <section id="kontakt" className="py-12 md:py-20 px-4 bg-black border-t border-neutral-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 md:mb-16 tracking-wide">
-            Kontakt
+            {dict.contact.title}
           </h2>
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -346,20 +287,20 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-black text-white py-8 md:py-12 px-4 pb-24 md:pb-12">
         <div className="max-w-7xl mx-auto text-center space-y-2">
-          <p className="text-base md:text-lg font-semibold">© 2026 GEN22 BarberShop</p>
-          <p className="text-xs md:text-sm text-gray-400">Všechna práva vyhrazena</p>
+          <p className="text-base md:text-lg font-semibold">{dict.footer.copyright}</p>
+          <p className="text-xs md:text-sm text-gray-400">{dict.footer.rights}</p>
         </div>
       </footer>
 
       {/* Sticky Mobile Booking Button */}
       <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
         <a
-          href="https://gen22barbershop.reservio.com/booking"
+          href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-white/95 backdrop-blur-md text-black text-center py-4 rounded-xl font-semibold shadow-xl min-h-[48px] flex items-center justify-center active:scale-95 transition-all duration-200"
         >
-          Rezervovat termín
+          {dict.hero.cta}
         </a>
       </div>
     </main>
