@@ -2,38 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Logo from './Logo'
-import { locales, type Locale, type Dictionary } from '../i18n/translations'
-
-const LOCALE_LABELS: Record<Locale, string> = {
-  cs: 'CZ',
-  en: 'EN',
-  de: 'DE',
-}
-
-function LanguageSwitcher({ lang, compact = false }: { lang: Locale; compact?: boolean }) {
-  return (
-    <div
-      className={`flex items-center rounded-full border border-neutral-700 overflow-hidden ${
-        compact ? 'text-[11px]' : 'text-xs'
-      }`}
-    >
-      {locales.map((locale) => (
-        <a
-          key={locale}
-          href={`/${locale}`}
-          aria-current={locale === lang ? 'page' : undefined}
-          className={`${compact ? 'px-2 py-1' : 'px-2.5 py-1.5'} font-semibold transition-colors ${
-            locale === lang
-              ? 'bg-white text-black'
-              : 'text-gray-300 hover:text-white'
-          }`}
-        >
-          {LOCALE_LABELS[locale]}
-        </a>
-      ))}
-    </div>
-  )
-}
+import LanguageSwitcher from './LanguageSwitcher'
+import { type Locale, type Dictionary } from '../i18n/translations'
 
 interface NavbarProps {
   lang: Locale
