@@ -26,14 +26,6 @@ export function generateMetadata({
         'x-default': '/cs',
       },
     },
-    icons: {
-      icon: [
-        { url: '/logo/gen22-logo3.png', sizes: '32x32', type: 'image/png' },
-        { url: '/logo/gen22-logo3.png', sizes: '64x64', type: 'image/png' },
-      ],
-      shortcut: '/logo/gen22-logo3.png',
-      apple: '/logo/gen22-logo3.png',
-    },
   }
 }
 
