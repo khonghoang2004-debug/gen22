@@ -41,7 +41,7 @@ export default function Navbar({ lang, nav }: NavbarProps) {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
             <a
-              href={`/${lang}/about`}
+              href={`/${lang}#about`}
               className="text-white hover:text-gray-300 transition-colors font-medium"
             >
               {nav.about}
@@ -69,23 +69,15 @@ export default function Navbar({ lang, nav }: NavbarProps) {
             </a>
           </div>
 
-          {/* Mobile: about link + language switcher + booking button */}
+          {/* Mobile: about link + language switcher (booking is covered by the sticky bottom button) */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href={`/${lang}/about`}
-              className="text-white text-[11px] font-semibold whitespace-nowrap active:opacity-80 transition-opacity"
+              href={`/${lang}#about`}
+              className="border border-neutral-700 bg-black/60 text-white px-3 py-1.5 rounded-full font-semibold text-xs min-h-[32px] flex items-center justify-center whitespace-nowrap active:opacity-80 transition-colors hover:border-white/50"
             >
               {nav.about}
             </a>
             <LanguageSwitcher lang={lang} compact />
-            <a
-              href="https://gen22barbershop.reservio.com/booking"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-black px-3 py-1.5 rounded-full font-semibold text-xs min-h-[36px] flex items-center justify-center active:opacity-80 transition-opacity whitespace-nowrap"
-            >
-              {nav.book}
-            </a>
           </div>
         </div>
       </div>

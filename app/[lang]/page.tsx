@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import Logo from '../components/Logo'
+import AboutContent from '../components/AboutContent'
 import { dictionaries, isLocale, type Locale } from '../i18n/translations'
 
 const BOOKING_URL = 'https://gen22barbershop.reservio.com/booking'
@@ -98,6 +99,9 @@ export default function Home({ params }: { params: { lang: string } }) {
           </div>
         </div>
       </section>
+
+      {/* About Section */}
+      <AboutContent about={dict.about} />
 
       {/* CTA Section */}
       <section className="py-12 md:py-20 px-4 bg-black border-t border-neutral-800">

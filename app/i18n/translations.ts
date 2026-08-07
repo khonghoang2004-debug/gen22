@@ -162,7 +162,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
           name: 'Pánský střih',
           price: '550 Kč',
           description:
-            'nápoj zdarma, konzultace, střih, úprava obočí, mytí vlasů, styling',
+            'nápoj zdarma, konzultace, střih, úprava obočí, styling',
         },
         {
           name: 'Úprava vousů',
@@ -191,6 +191,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
           price: '650 Kč',
           description:
             'vlasy delší než uši, nápoj zdarma, konzultace, střih, mytí, styling',
+        },
+        {
+          name: 'Mytí vlasů',
+          price: '150 Kč',
+          description: 'mytí vlasů, chvilka masáže, foukání a styling',
         },
       ],
     },
@@ -304,7 +309,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
           name: "Men's Haircut",
           price: '550 Kč',
           description:
-            'free drink, consultation, haircut, eyebrow trim, hair wash, styling',
+            'free drink, consultation, haircut, eyebrow trim, styling',
         },
         {
           name: 'Beard Trim',
@@ -334,6 +339,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
           price: '650 Kč',
           description:
             'hair longer than ears, free drink, consultation, haircut, hair wash, styling',
+        },
+        {
+          name: 'Hair Wash',
+          price: '150 Kč',
+          description: 'hair wash, short head massage, blow-dry and styling',
         },
       ],
     },
@@ -447,7 +457,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
           name: 'Herrenhaarschnitt',
           price: '550 Kč',
           description:
-            'Getränk gratis, Beratung, Haarschnitt, Augenbrauenkorrektur, Haarwäsche, Styling',
+            'Getränk gratis, Beratung, Haarschnitt, Augenbrauenkorrektur, Styling',
         },
         {
           name: 'Bartpflege',
@@ -477,6 +487,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
           price: '650 Kč',
           description:
             'Haare länger als die Ohren, Getränk gratis, Beratung, Haarschnitt, Haarwäsche, Styling',
+        },
+        {
+          name: 'Haarwäsche',
+          price: '150 Kč',
+          description: 'Haarwäsche, kurze Kopfmassage, Föhnen und Styling',
         },
       ],
     },
