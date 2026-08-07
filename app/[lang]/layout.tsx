@@ -41,7 +41,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} className="scroll-smooth">
       <body>{children}</body>
     </html>
   )

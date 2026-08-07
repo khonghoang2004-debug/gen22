@@ -21,11 +21,8 @@ export default function Navbar({ lang, nav }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+  const goHome = () => {
+    window.location.href = `/${lang}`
   }
 
   return (
@@ -37,29 +34,30 @@ export default function Navbar({ lang, nav }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12 md:h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 min-w-[100px]">
-            <Logo
-              onClick={() => scrollToSection('hero')}
-              variant="auto"
-              size="navbar"
-              className=""
-            />
+          <div className="flex-shrink-0 min-w-[80px]">
+            <Logo onClick={goHome} variant="auto" size="navbar" className="" />
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection('cenik')}
+            <a
+              href={`/${lang}/about`}
+              className="text-white hover:text-gray-300 transition-colors font-medium"
+            >
+              {nav.about}
+            </a>
+            <a
+              href={`/${lang}#cenik`}
               className="text-white hover:text-gray-300 transition-colors font-medium"
             >
               {nav.pricing}
-            </button>
-            <button
-              onClick={() => scrollToSection('kontakt')}
+            </a>
+            <a
+              href={`/${lang}#kontakt`}
               className="text-white hover:text-gray-300 transition-colors font-medium"
             >
               {nav.contact}
-            </button>
+            </a>
             <LanguageSwitcher lang={lang} />
             <a
               href="https://gen22barbershop.reservio.com/booking"
@@ -71,14 +69,20 @@ export default function Navbar({ lang, nav }: NavbarProps) {
             </a>
           </div>
 
-          {/* Mobile: language switcher + booking button */}
+          {/* Mobile: about link + language switcher + booking button */}
           <div className="md:hidden flex items-center gap-2">
+            <a
+              href={`/${lang}/about`}
+              className="text-white text-[11px] font-semibold whitespace-nowrap active:opacity-80 transition-opacity"
+            >
+              {nav.about}
+            </a>
             <LanguageSwitcher lang={lang} compact />
             <a
               href="https://gen22barbershop.reservio.com/booking"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-black px-4 py-1.5 rounded-full font-semibold text-xs min-h-[36px] flex items-center justify-center active:opacity-80 transition-opacity"
+              className="bg-white text-black px-3 py-1.5 rounded-full font-semibold text-xs min-h-[36px] flex items-center justify-center active:opacity-80 transition-opacity whitespace-nowrap"
             >
               {nav.book}
             </a>
