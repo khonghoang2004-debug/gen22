@@ -81,11 +81,11 @@ export default function LanguageSwitcher({ lang, compact = false }: LanguageSwit
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`flex items-center gap-1.5 rounded-full border border-neutral-700 bg-black/60 font-semibold text-white transition-colors hover:border-white/50 ${
-          compact ? 'px-2 py-1 text-[11px]' : 'px-3 py-1.5 text-xs'
+        className={`flex items-center gap-1.5 rounded-full border border-neutral-700 bg-black/60 font-semibold text-white transition-colors hover:border-white/50 px-3 py-1.5 text-xs ${
+          compact ? 'min-h-[32px]' : ''
         }`}
       >
-        <FlagIcon locale={lang} className={compact ? 'w-4' : 'w-5'} />
+        <FlagIcon locale={lang} className="w-5" />
         <span>{LOCALE_INFO[lang].code}</span>
         <svg
           viewBox="0 0 20 20"
