@@ -117,8 +117,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
         title: 'Gen22 Barbershop – Praha 1',
         paragraphs: [
           'Nakonec jsem našel místo, kde jsem chtěl budovat svou značku.',
-          'Dnes pracuji v Gen22 Barbershop na ulici Vodičkova, jen několik minut od Václavského náměstí, v samotném centru Prahy 1.',
-          'Díky této poloze si nás snadno najdou nejen lidé z Prahy, ale také turisté z celého světa, kteří hledají kvalitní barber v centru Prahy.',
+          'Dnes pracuji v Gen22 Barbershop na ulici Vodičkova, jen několik minut od Václavského náměstí, v samotném centru Prahy 1. Pokud hledáte holičství na Vodičkově nebo barbershop na Novém Městě, jste u nás správně.',
+          'Díky této poloze si nás snadno najdou nejen lidé z Prahy, kteří chtějí kvalitní pánský střih, ale také turisté z celého světa, kteří hledají barber shop v centru Prahy 1 – ať už jde o skin fade, klasiku, nebo military střih.',
+          'Objednat se můžete online během pár sekund, a pokud jdete právě kolem, rádi vás ostříháme i bez rezervace – walk-in zákazníci jsou vítáni.',
         ],
       },
       experience: {
@@ -267,8 +268,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
         title: 'Gen22 Barbershop – Prague 1',
         paragraphs: [
           'In the end, I found the place where I wanted to build my brand.',
-          'Today I work at Gen22 Barbershop on Vodičkova street, just a few minutes from Wenceslas Square, in the very centre of Prague 1.',
-          'Thanks to this location, we are easy to find not only for people from Prague, but also for visitors from all over the world looking for a quality barber in the centre of Prague.',
+          'Today I work at Gen22 Barbershop on Vodičkova street, just a few minutes from Wenceslas Square (Václavské náměstí), in the very centre of Prague 1 – Nové Město.',
+          'Thanks to this location, we are easy to find for anyone looking for a barber in Prague 1: locals who want a proper men’s haircut as well as visitors searching for a barber shop near Wenceslas Square – whether it’s a skin fade, a classic cut or a military haircut.',
+          'You can book online in a few seconds, and walk-ins are welcome too – if you’re passing by, just drop in.',
         ],
       },
       experience: {
@@ -418,8 +420,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
         title: 'Gen22 Barbershop – Prag 1',
         paragraphs: [
           'Schließlich habe ich den Ort gefunden, an dem ich meine Marke aufbauen wollte.',
-          'Heute arbeite ich im Gen22 Barbershop in der Vodičkova-Straße, nur wenige Minuten vom Wenzelsplatz entfernt, im Herzen von Prag 1.',
-          'Dank dieser Lage finden uns nicht nur die Prager, sondern auch Besucher aus aller Welt, die einen guten Barber im Zentrum von Prag suchen.',
+          'Heute arbeite ich im Gen22 Barbershop in der Vodičkova-Straße, nur wenige Minuten vom Wenzelsplatz (Václavské náměstí) entfernt, im Herzen von Prag 1 – Nové Město.',
+          'Dank dieser Lage finden uns alle, die einen Barbershop in Prag 1 suchen: Prager, die einen guten Herrenhaarschnitt möchten, genauso wie Besucher auf der Suche nach einem Barber in der Nähe des Wenzelsplatzes – ob Skin Fade, klassischer Schnitt oder Military Haircut.',
+          'Termine können Sie in wenigen Sekunden online buchen, und Walk-ins sind ebenfalls willkommen – kommen Sie einfach vorbei.',
         ],
       },
       experience: {
