@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,10 +6,23 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-black text-white antialiased;
-    font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+    @apply bg-black text-white antialiased font-sans;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c8a96a;
+    outline-offset: 2px;
   }
 }
 
@@ -21,11 +32,11 @@
   }
 }
 
-/* Smooth fade-in animation */
-@keyframes fadeInUp {
+/* Single orchestrated entrance: hero content settles once on load */
+@keyframes heroRise {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -33,39 +44,58 @@
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+.hero-enter > * {
+  opacity: 0;
+  animation: heroRise 0.7s ease-out forwards;
 }
 
-/* Premium fade-in for sections */
-@keyframes fadeIn {
+.hero-enter > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero-enter > *:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.hero-enter > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.hero-enter > *:nth-child(4) {
+  animation-delay: 0.42s;
+}
+.hero-enter > *:nth-child(5) {
+  animation-delay: 0.52s;
+}
+
+/* Hero image settles from a slight zoom — plays once */
+@keyframes heroSettle {
   from {
-    opacity: 0;
+    transform: scale(1.07);
   }
   to {
+    transform: scale(1);
+  }
+}
+
+.hero-image {
+  animation: heroSettle 16s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-enter > * {
+    animation: none;
     opacity: 1;
   }
-}
 
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out;
-}
-
-/* Mobile touch improvements */
-@layer base {
-  * {
-    -webkit-tap-highlight-color: transparent;
+  .hero-image {
+    animation: none;
   }
-  
-  button,
-  a {
-    touch-action: manipulation;
-  }
-}
 
-/* Ensure sticky button doesn't interfere with content */
-@media (max-width: 768px) {
-  body {
-    padding-bottom: 0;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }

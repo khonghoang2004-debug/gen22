@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import Logo from '../components/Logo'
 import AboutContent from '../components/AboutContent'
@@ -14,45 +15,49 @@ export default function Home({ params }: { params: { lang: string } }) {
       {/* Navbar */}
       <Navbar lang={lang} nav={dict.nav} />
 
-      {/* Hero Section - Split Layout */}
+      {/* Hero Section */}
       <section id="hero" className="relative bg-black">
-        {/* Image Section - Compact Height */}
-        <div className="relative h-[24vh] md:h-[28vh] overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat object-cover"
-            style={{
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2070&auto=format&fit=crop)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black"></div>
-          </div>
+        <div className="relative h-[30vh] md:h-[46vh] overflow-hidden">
+          <Image
+            src="/hero.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover hero-image"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black"></div>
         </div>
 
-        {/* Content Block - Pulled Up More */}
-        <div className="relative -mt-14 md:-mt-16 bg-black rounded-t-3xl shadow-2xl px-5 py-4 md:px-8 md:py-6">
-          <div className="max-w-[320px] mx-auto">
-            <div className="flex flex-col items-center text-center gap-2">
+        {/* Content block pulled up over the image */}
+        <div className="relative -mt-16 md:-mt-20 px-5 py-4 md:px-8 md:py-6">
+          <div className="max-w-[340px] md:max-w-md mx-auto">
+            <div className="hero-enter flex flex-col items-center text-center gap-2">
               {/* Logo */}
               <Logo size="hero" className="cursor-default" />
 
-              {/* Subtitle */}
-              <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-[320px] mx-auto mt-2 mb-3">
+              {/* Tagline — page h1 */}
+              <h1 className="font-display text-xl md:text-2xl font-medium text-gray-100 leading-snug max-w-[340px] mx-auto mt-2 text-balance">
                 {dict.hero.tagline}
+              </h1>
+
+              {/* Location line — local keywords above the fold */}
+              <p className="text-[13px] md:text-sm text-neutral-400 leading-relaxed max-w-[340px] mx-auto mb-3 text-balance">
+                {dict.hero.location}
               </p>
 
-              {/* Primary CTA Button */}
+              {/* Primary CTA */}
               <a
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full max-w-[320px] bg-white text-black py-3 text-lg font-semibold rounded-xl shadow-lg active:scale-95 transition-all duration-200 text-center"
+                className="block w-full max-w-[340px] bg-white text-black py-3.5 text-lg font-semibold rounded-xl shadow-lg hover:bg-neutral-200 active:scale-[0.98] transition-all duration-200 text-center"
               >
                 {dict.hero.cta}
               </a>
 
-              {/* Trust Line */}
-              <p className="text-xs text-gray-500 mt-1 text-center">
+              {/* Trust line */}
+              <p className="text-xs text-neutral-500 mt-1 text-center">
                 {dict.hero.trust}
               </p>
             </div>
@@ -60,38 +65,48 @@ export default function Home({ params }: { params: { lang: string } }) {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="cenik" className="py-12 md:py-20 px-4 bg-black border-t border-neutral-800">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-wide mb-4">
+      {/* Pricing — classic barber menu board */}
+      <section
+        id="cenik"
+        className="py-14 md:py-24 px-4 bg-black border-t border-neutral-900 scroll-mt-12 md:scroll-mt-16"
+      >
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
               {dict.pricing.title}
             </h2>
-            <div className="w-16 h-[1px] bg-gray-700 mx-auto"></div>
+            <div className="w-16 h-px bg-brass/60 mx-auto"></div>
           </div>
 
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="divide-y divide-neutral-900">
             {dict.pricing.services.map((service) => (
               <div
                 key={service.name}
-                className="bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-2xl p-5 transition-all duration-300 hover:border-white/40 hover:shadow-lg hover:scale-[1.02] active:scale-95 relative"
+                className="py-5 md:py-6 px-2 md:px-3 rounded-lg transition-colors duration-300 hover:bg-white/[0.03]"
               >
-                {service.popular && (
-                  <div className="absolute -top-2 -right-2">
-                    <span className="text-xs px-2 py-1 bg-white text-black rounded-full font-semibold">
+                <div className="flex items-baseline gap-3">
+                  <h3 className="font-display text-lg md:text-xl font-medium text-white shrink-0">
+                    {service.name}
+                  </h3>
+                  {service.popular && (
+                    <span className="hidden sm:inline-block shrink-0 text-[11px] leading-none px-2 py-1 border border-brass/60 text-brass rounded-full whitespace-nowrap -translate-y-0.5">
                       {dict.pricing.popularBadge}
                     </span>
-                  </div>
-                )}
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-white">{service.name}</h3>
-                  <div className="text-lg font-bold text-white whitespace-nowrap">
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className="flex-1 border-b border-dotted border-neutral-700 -translate-y-1"
+                  ></span>
+                  <span className="shrink-0 text-lg md:text-xl font-semibold text-brass whitespace-nowrap">
                     {service.price}
-                  </div>
+                  </span>
                 </div>
-                <div className="border-t border-neutral-800 my-3"></div>
-                <p className="text-sm text-gray-400 leading-relaxed max-w-[90%]">
+                {service.popular && (
+                  <span className="sm:hidden inline-block mt-2 text-[11px] leading-none px-2 py-1 border border-brass/60 text-brass rounded-full">
+                    {dict.pricing.popularBadge}
+                  </span>
+                )}
+                <p className="text-sm text-neutral-400 leading-relaxed mt-1.5 max-w-[52ch]">
                   {service.description}
                 </p>
               </div>
@@ -104,10 +119,10 @@ export default function Home({ params }: { params: { lang: string } }) {
       <AboutContent about={dict.about} />
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 px-4 bg-black border-t border-neutral-800">
+      <section className="py-14 md:py-24 px-4 bg-black border-t border-neutral-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6 md:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide leading-tight">
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide leading-tight text-balance">
               {dict.cta.title}
             </h2>
             <div className="pt-2 md:pt-4">
@@ -115,7 +130,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block md:inline-block w-full md:w-auto border-2 border-white text-white px-8 py-4 text-lg font-semibold rounded-xl md:rounded-full min-h-[48px] flex items-center justify-center hover:bg-white hover:text-black active:opacity-80 transition-all duration-300"
+                className="block md:inline-block w-full md:w-auto border border-brass/70 text-white px-10 py-4 text-lg font-semibold rounded-xl md:rounded-full min-h-[48px] flex items-center justify-center hover:bg-white hover:border-white hover:text-black active:opacity-80 transition-all duration-300"
               >
                 {dict.cta.button}
               </a>
@@ -125,25 +140,31 @@ export default function Home({ params }: { params: { lang: string } }) {
       </section>
 
       {/* Contact Section */}
-      <section id="kontakt" className="py-12 md:py-20 px-4 bg-black border-t border-neutral-800">
+      <section
+        id="kontakt"
+        className="py-14 md:py-24 px-4 bg-black border-t border-neutral-900 scroll-mt-12 md:scroll-mt-16"
+      >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 md:mb-16 tracking-wide">
-            {dict.contact.title}
-          </h2>
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
+              {dict.contact.title}
+            </h2>
+            <div className="w-16 h-px bg-brass/60 mx-auto"></div>
+          </div>
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Left Column - Contact Info */}
-            <div className="space-y-4 md:space-y-8 w-full">
+            <div className="space-y-4 md:space-y-7 w-full">
               {/* Address */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Vodičkova+34,+110+00+Nové+Město,+Czechia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
+                className="group flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
               >
                 <div className="flex-shrink-0">
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-white"
+                    className="w-5 h-5 md:w-6 md:h-6 text-brass"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -162,7 +183,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                     />
                   </svg>
                 </div>
-                <div className="text-base md:text-lg font-semibold text-white hover:underline">
+                <div className="text-base md:text-lg font-medium text-white group-hover:text-brass-light transition-colors">
                   Vodičkova 34, 110 00 Nové Město, Czechia
                 </div>
               </a>
@@ -170,11 +191,11 @@ export default function Home({ params }: { params: { lang: string } }) {
               {/* Phone */}
               <a
                 href="tel:+420776107688"
-                className="flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
+                className="group flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
               >
                 <div className="flex-shrink-0">
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-white"
+                    className="w-5 h-5 md:w-6 md:h-6 text-brass"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -187,7 +208,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                     />
                   </svg>
                 </div>
-                <div className="text-base md:text-lg font-semibold text-white hover:underline">
+                <div className="text-base md:text-lg font-medium text-white group-hover:text-brass-light transition-colors">
                   +420 776 107 688
                 </div>
               </a>
@@ -197,11 +218,11 @@ export default function Home({ params }: { params: { lang: string } }) {
                 href="https://www.facebook.com/dam.hoang2601"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
+                className="group flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
               >
                 <div className="flex-shrink-0">
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-white"
+                    className="w-5 h-5 md:w-6 md:h-6 text-brass"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -213,7 +234,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                     />
                   </svg>
                 </div>
-                <div className="text-base md:text-lg font-semibold text-white hover:underline">
+                <div className="text-base md:text-lg font-medium text-white group-hover:text-brass-light transition-colors">
                   Facebook
                 </div>
               </a>
@@ -223,11 +244,11 @@ export default function Home({ params }: { params: { lang: string } }) {
                 href="https://www.instagram.com/barbergenz_filip"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
+                className="group flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
               >
                 <div className="flex-shrink-0">
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-white"
+                    className="w-5 h-5 md:w-6 md:h-6 text-brass"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -239,7 +260,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                     />
                   </svg>
                 </div>
-                <div className="text-base md:text-lg font-semibold text-white hover:underline">
+                <div className="text-base md:text-lg font-medium text-white group-hover:text-brass-light transition-colors">
                   Instagram
                 </div>
               </a>
@@ -247,11 +268,11 @@ export default function Home({ params }: { params: { lang: string } }) {
               {/* Email */}
               <a
                 href="mailto:gen22barbershop@gmail.com"
-                className="flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
+                className="group flex items-center gap-3 min-h-[48px] active:opacity-80 transition-opacity"
               >
                 <div className="flex-shrink-0">
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-white"
+                    className="w-5 h-5 md:w-6 md:h-6 text-brass"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -265,23 +286,24 @@ export default function Home({ params }: { params: { lang: string } }) {
                     />
                   </svg>
                 </div>
-                <div className="text-base md:text-lg font-semibold text-white hover:underline">
+                <div className="text-base md:text-lg font-medium text-white group-hover:text-brass-light transition-colors">
                   gen22barbershop@gmail.com
                 </div>
               </a>
             </div>
 
             {/* Right Column - Google Map */}
-            <div className="rounded-xl md:rounded-2xl overflow-hidden border border-gray-800 w-full mt-4 md:mt-0">
+            <div className="rounded-xl md:rounded-2xl overflow-hidden border border-neutral-800 w-full mt-4 md:mt-0">
               <iframe
                 src="https://www.google.com/maps?q=Vodičkova+34,+110+00+Nové+Město,+Czechia&output=embed"
                 width="100%"
-                height="250"
+                height="280"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full"
+                title="GEN22 BarberShop – Vodičkova 34, Praha 1"
               ></iframe>
             </div>
           </div>
@@ -289,10 +311,12 @@ export default function Home({ params }: { params: { lang: string } }) {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 bg-black text-white py-8 md:py-12 px-4 pb-24 md:pb-12">
+      <footer className="border-t border-neutral-900 bg-black text-white py-8 md:py-12 px-4 pb-24 md:pb-12">
         <div className="max-w-7xl mx-auto text-center space-y-2">
-          <p className="text-base md:text-lg font-semibold">{dict.footer.copyright}</p>
-          <p className="text-xs md:text-sm text-gray-400">{dict.footer.rights}</p>
+          <p className="font-display text-base md:text-lg font-medium">
+            © {new Date().getFullYear()} GEN22 BarberShop
+          </p>
+          <p className="text-xs md:text-sm text-neutral-500">{dict.footer.rights}</p>
         </div>
       </footer>
 
@@ -302,7 +326,7 @@ export default function Home({ params }: { params: { lang: string } }) {
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-white/95 backdrop-blur-md text-black text-center py-4 rounded-xl font-semibold shadow-xl min-h-[48px] flex items-center justify-center active:scale-95 transition-all duration-200"
+          className="block bg-white/95 backdrop-blur-md text-black text-center py-4 rounded-xl font-semibold shadow-xl min-h-[48px] flex items-center justify-center active:scale-[0.98] transition-all duration-200"
         >
           {dict.hero.cta}
         </a>

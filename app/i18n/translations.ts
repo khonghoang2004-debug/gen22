@@ -42,6 +42,7 @@ export interface Dictionary {
   }
   hero: {
     tagline: string
+    location: string
     cta: string
     trust: string
   }
@@ -66,9 +67,9 @@ export interface Dictionary {
 export const dictionaries: Record<Locale, Dictionary> = {
   cs: {
     meta: {
-      title: 'GEN22 BarberShop - Precizní střih. Moderní styl.',
+      title: 'GEN22 BarberShop – Barbershop Praha 1, Vodičkova 34',
       description:
-        'Profesionální barbershop v centru Prahy. Pánské střihy, úprava vousů a kompletní styling služby.',
+        'Pánské holičství na Vodičkově 34, 2 minuty od Václavského náměstí. Pánské střihy, skin fade, úprava vousů i dětské střihy. Online rezervace za 30 sekund.',
     },
     nav: {
       about: 'O mně',
@@ -151,6 +152,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     hero: {
       tagline: 'Precizní střih. Moderní styl. Skutečný zážitek.',
+      location:
+        'Pánské holičství na Vodičkově 34, Praha 1 – dvě minuty od Václavského náměstí.',
       cta: 'Rezervovat termín',
       trust: '✔ Rezervace během 30 sekund',
     },
@@ -213,9 +216,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
   en: {
     meta: {
-      title: 'GEN22 BarberShop - Precise cuts. Modern style.',
+      title: 'GEN22 BarberShop – Barber Shop in Prague 1, Vodičkova 34',
       description:
-        "Professional barbershop in the centre of Prague. Men's haircuts, beard trims and complete styling services.",
+        'Barber shop at Vodičkova 34, two minutes from Wenceslas Square (Václavské náměstí). Skin fades, beard trims, classic and modern cuts. Book online in 30 seconds.',
     },
     nav: {
       about: 'About',
@@ -298,6 +301,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     hero: {
       tagline: 'Precise cuts. Modern style. A real experience.',
+      location:
+        'Barber shop at Vodičkova 34, Prague 1 – two minutes from Wenceslas Square.',
       cta: 'Book an appointment',
       trust: '✔ Booking takes 30 seconds',
     },
@@ -361,9 +366,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
   de: {
     meta: {
-      title: 'GEN22 BarberShop - Präziser Schnitt. Moderner Stil.',
+      title: 'GEN22 BarberShop – Barbershop in Prag 1, Vodičkova 34',
       description:
-        'Professioneller Barbershop im Zentrum von Prag. Herrenhaarschnitte, Bartpflege und komplettes Styling.',
+        'Barbershop in der Vodičkova 34, zwei Minuten vom Wenzelsplatz (Václavské náměstí). Skin Fades, Bartpflege, klassische und moderne Schnitte. Online-Termin in 30 Sekunden.',
     },
     nav: {
       about: 'Über mich',
@@ -446,6 +451,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     hero: {
       tagline: 'Präziser Schnitt. Moderner Stil. Ein echtes Erlebnis.',
+      location:
+        'Barbershop in der Vodičkova 34, Prag 1 – zwei Minuten vom Wenzelsplatz.',
       cta: 'Termin buchen',
       trust: '✔ Buchung in 30 Sekunden',
     },

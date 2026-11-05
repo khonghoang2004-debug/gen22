@@ -28,7 +28,9 @@ export default function Navbar({ lang, nav }: NavbarProps) {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black shadow-lg' : 'bg-transparent'
+        scrolled
+          ? 'bg-black/90 backdrop-blur-md border-b border-neutral-900 shadow-lg'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,19 +44,19 @@ export default function Navbar({ lang, nav }: NavbarProps) {
           <div className="hidden md:flex items-center gap-8">
             <a
               href={`/${lang}#about`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="relative text-white font-medium transition-colors hover:text-brass-light after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-brass after:transition-all after:duration-300 hover:after:w-full"
             >
               {nav.about}
             </a>
             <a
               href={`/${lang}#cenik`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="relative text-white font-medium transition-colors hover:text-brass-light after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-brass after:transition-all after:duration-300 hover:after:w-full"
             >
               {nav.pricing}
             </a>
             <a
               href={`/${lang}#kontakt`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="relative text-white font-medium transition-colors hover:text-brass-light after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-brass after:transition-all after:duration-300 hover:after:w-full"
             >
               {nav.contact}
             </a>
@@ -73,7 +75,7 @@ export default function Navbar({ lang, nav }: NavbarProps) {
           <div className="md:hidden flex items-center gap-2">
             <a
               href={`/${lang}#about`}
-              className="border border-neutral-700 bg-black/60 text-white px-3 py-1.5 rounded-full font-semibold text-xs min-h-[32px] flex items-center justify-center whitespace-nowrap active:opacity-80 transition-colors hover:border-white/50"
+              className="border border-neutral-700 bg-black/60 text-white px-3 py-1.5 rounded-full font-semibold text-xs min-h-[32px] flex items-center justify-center whitespace-nowrap active:opacity-80 transition-colors hover:border-brass/70"
             >
               {nav.about}
             </a>

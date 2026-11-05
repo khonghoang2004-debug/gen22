@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { defaultLocale, isLocale, locales, type Locale } from './app/i18n/translations'
 
+const LOCALE_COOKIE = 'NEXT_LOCALE'
+
 function detectLocale(request: NextRequest): Locale {
+  // A locale the visitor picked earlier wins over browser language
+  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value
+  if (cookieLocale && isLocale(cookieLocale)) {
+    return cookieLocale
+  }
+
   const acceptLanguage = request.headers.get('accept-language') ?? ''
   const preferred = acceptLanguage
     .split(',')
@@ -18,11 +26,19 @@ function detectLocale(request: NextRequest): Locale {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  const hasLocale = locales.some(
+  const matchedLocale = locales.find(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   )
-  if (hasLocale) {
-    return NextResponse.next()
+
+  if (matchedLocale) {
+    const response = NextResponse.next()
+    if (request.cookies.get(LOCALE_COOKIE)?.value !== matchedLocale) {
+      response.cookies.set(LOCALE_COOKIE, matchedLocale, {
+        maxAge: 60 * 60 * 24 * 365,
+        path: '/',
+      })
+    }
+    return response
   }
 
   const locale = detectLocale(request)
@@ -32,6 +48,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Skip Next internals and any file with an extension (images, icons, ...)
+  // Skip Next internals and any file with an extension (images, icons, sitemap.xml, ...)
   matcher: ['/((?!_next|api|.*\\..*).*)'],
 }

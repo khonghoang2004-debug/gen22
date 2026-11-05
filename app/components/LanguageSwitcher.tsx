@@ -81,7 +81,7 @@ export default function LanguageSwitcher({ lang, compact = false }: LanguageSwit
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`flex items-center gap-1.5 rounded-full border border-neutral-700 bg-black/60 font-semibold text-white transition-colors hover:border-white/50 px-3 py-1.5 text-xs ${
+        className={`flex items-center gap-1.5 rounded-full border border-neutral-700 bg-black/60 font-semibold text-white transition-colors hover:border-brass/70 px-3 py-1.5 text-xs ${
           compact ? 'min-h-[32px]' : ''
         }`}
       >
