@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Reveal from './Reveal'
 import { type Dictionary } from '../i18n/translations'
 
 function AboutImage({
@@ -27,11 +28,15 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
       {/* Header */}
       <div className="pt-12 md:pt-20 pb-2 md:pb-4 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-3">
-            {about.title}
-          </h2>
-          <p className="text-base md:text-lg text-neutral-400">{about.subtitle}</p>
-          <div className="w-16 h-px bg-brass/60 mx-auto mt-6"></div>
+          <Reveal>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-3">
+              {about.title}
+            </h2>
+            <p className="text-base md:text-lg text-neutral-400">{about.subtitle}</p>
+          </Reveal>
+          <Reveal variant="line" delay={200}>
+            <div className="w-16 h-px bg-brass/60 mx-auto mt-6"></div>
+          </Reveal>
         </div>
       </div>
 
@@ -39,7 +44,7 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
       <div className="py-10 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full space-y-4 order-2 md:order-1">
+            <Reveal variant="left" className="w-full space-y-4 order-2 md:order-1">
               <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-wide mb-4">
                 {about.story.title}
               </h3>
@@ -48,10 +53,10 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
                   {p}
                 </p>
               ))}
-            </div>
-            <div className="w-full order-1 md:order-2">
+            </Reveal>
+            <Reveal variant="right" className="w-full order-1 md:order-2">
               <AboutImage src="/about/sign.jpg" alt="Trust me I'm a barber" />
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -60,10 +65,10 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
       <div className="py-10 md:py-16 px-4 border-t border-neutral-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full">
+            <Reveal variant="left" className="w-full">
               <AboutImage src="/about/tools.jpg" alt="GEN22 BarberShop tools" />
-            </div>
-            <div className="w-full space-y-4">
+            </Reveal>
+            <Reveal variant="right" className="w-full space-y-4">
               <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-wide mb-4">
                 {about.specialization.title}
               </h3>
@@ -85,7 +90,7 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
               <p className="text-sm md:text-base text-gray-400 leading-relaxed pt-2">
                 {about.specialization.outro}
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -94,7 +99,7 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
       <div className="py-10 md:py-16 px-4 border-t border-neutral-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full space-y-4 order-2 md:order-1">
+            <Reveal variant="left" className="w-full space-y-4 order-2 md:order-1">
               <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-wide mb-4">
                 {about.location.title}
               </h3>
@@ -103,10 +108,10 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
                   {p}
                 </p>
               ))}
-            </div>
-            <div className="w-full order-1 md:order-2">
+            </Reveal>
+            <Reveal variant="right" className="w-full order-1 md:order-2">
               <AboutImage src="/about/storefront.jpg" alt="GEN22 BarberShop – Vodičkova, Praha 1" />
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -115,10 +120,10 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
       <div className="py-10 md:py-16 px-4 border-t border-neutral-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="w-full">
+            <Reveal variant="left" className="w-full">
               <AboutImage src="/about/station.jpg" alt="GEN22 BarberShop interior" />
-            </div>
-            <div className="w-full space-y-4">
+            </Reveal>
+            <Reveal variant="right" className="w-full space-y-4">
               <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-wide mb-4">
                 {about.experience.title}
               </h3>
@@ -140,15 +145,15 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
                   {p}
                 </p>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
 
       {/* Thanks */}
       <div className="py-10 md:py-16 px-4 border-t border-neutral-900">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-wide mb-2">
+        <Reveal className="max-w-3xl mx-auto text-center space-y-4">
+          <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-wide mb-2">
             {about.thanks.title}
           </h3>
           {about.thanks.paragraphs.map((p) => (
@@ -156,7 +161,7 @@ export default function AboutContent({ about }: { about: Dictionary['about'] }) 
               {p}
             </p>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

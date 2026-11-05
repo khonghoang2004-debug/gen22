@@ -44,6 +44,7 @@ export interface Dictionary {
     tagline: string
     location: string
     cta: string
+    call: string
     trust: string
   }
   pricing: {
@@ -153,8 +154,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     hero: {
       tagline: 'Precizní střih. Moderní styl. Skutečný zážitek.',
       location:
-        'Pánské holičství na Vodičkově 34, Praha 1 – dvě minuty od Václavského náměstí.',
+        'Pánské holičství na Vodičkově 34, Praha 1, dvě minuty od Václavského náměstí.',
       cta: 'Rezervovat termín',
+      call: 'Zavolat',
       trust: '✔ Rezervace během 30 sekund',
     },
     pricing: {
@@ -302,8 +304,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     hero: {
       tagline: 'Precise cuts. Modern style. A real experience.',
       location:
-        'Barber shop at Vodičkova 34, Prague 1 – two minutes from Wenceslas Square.',
+        'Barber shop at Vodičkova 34, Prague 1, two minutes from Wenceslas Square.',
       cta: 'Book an appointment',
+      call: 'Call us',
       trust: '✔ Booking takes 30 seconds',
     },
     pricing: {
@@ -452,8 +455,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     hero: {
       tagline: 'Präziser Schnitt. Moderner Stil. Ein echtes Erlebnis.',
       location:
-        'Barbershop in der Vodičkova 34, Prag 1 – zwei Minuten vom Wenzelsplatz.',
+        'Barbershop in der Vodičkova 34, Prag 1, zwei Minuten vom Wenzelsplatz.',
       cta: 'Termin buchen',
+      call: 'Anrufen',
       trust: '✔ Buchung in 30 Sekunden',
     },
     pricing: {

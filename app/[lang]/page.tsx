@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import Logo from '../components/Logo'
 import AboutContent from '../components/AboutContent'
+import Reveal from '../components/Reveal'
 import { dictionaries, isLocale, type Locale } from '../i18n/translations'
 
 const BOOKING_URL = 'https://gen22barbershop.reservio.com/booking'
@@ -42,7 +43,7 @@ export default function Home({ params }: { params: { lang: string } }) {
               </h1>
 
               {/* Location line — local keywords above the fold */}
-              <p className="text-[13px] md:text-sm text-neutral-400 leading-relaxed max-w-[340px] mx-auto mb-3 text-balance">
+              <p className="text-[13px] md:text-sm text-neutral-400 leading-relaxed max-w-[360px] md:max-w-md mx-auto mb-3 text-balance">
                 {dict.hero.location}
               </p>
 
@@ -51,9 +52,31 @@ export default function Home({ params }: { params: { lang: string } }) {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full max-w-[340px] bg-white text-black py-3.5 text-lg font-semibold rounded-xl shadow-lg hover:bg-neutral-200 active:scale-[0.98] transition-all duration-200 text-center"
+                className="block w-full max-w-[340px] bg-white text-black py-3 text-base md:text-lg font-semibold rounded-full shadow-lg hover:bg-neutral-200 active:scale-[0.98] transition-all duration-200 text-center"
               >
                 {dict.hero.cta}
+              </a>
+
+              {/* Call button */}
+              <a
+                href="tel:+420776107688"
+                className="w-full max-w-[340px] border border-brass/70 text-white py-2.5 text-base font-semibold rounded-full flex items-center justify-center gap-2 hover:border-brass hover:text-brass-light active:scale-[0.98] transition-all duration-200"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                {dict.hero.call}
               </a>
 
               {/* Trust line */}
@@ -72,16 +95,21 @@ export default function Home({ params }: { params: { lang: string } }) {
       >
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
-              {dict.pricing.title}
-            </h2>
-            <div className="w-16 h-px bg-brass/60 mx-auto"></div>
+            <Reveal>
+              <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
+                {dict.pricing.title}
+              </h2>
+            </Reveal>
+            <Reveal variant="line" delay={200}>
+              <div className="w-16 h-px bg-brass/60 mx-auto"></div>
+            </Reveal>
           </div>
 
           <div className="divide-y divide-neutral-900">
-            {dict.pricing.services.map((service) => (
-              <div
+            {dict.pricing.services.map((service, index) => (
+              <Reveal
                 key={service.name}
+                delay={Math.min(index * 70, 350)}
                 className="py-5 md:py-6 px-2 md:px-3 rounded-lg transition-colors duration-300 hover:bg-white/[0.03]"
               >
                 <div className="flex items-baseline gap-3">
@@ -109,7 +137,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                 <p className="text-sm text-neutral-400 leading-relaxed mt-1.5 max-w-[52ch]">
                   {service.description}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -121,7 +149,7 @@ export default function Home({ params }: { params: { lang: string } }) {
       {/* CTA Section */}
       <section className="py-14 md:py-24 px-4 bg-black border-t border-neutral-900">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-6 md:space-y-8">
+          <Reveal className="text-center space-y-6 md:space-y-8">
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide leading-tight text-balance">
               {dict.cta.title}
             </h2>
@@ -130,12 +158,12 @@ export default function Home({ params }: { params: { lang: string } }) {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block md:inline-block w-full md:w-auto border border-brass/70 text-white px-10 py-4 text-lg font-semibold rounded-xl md:rounded-full min-h-[48px] flex items-center justify-center hover:bg-white hover:border-white hover:text-black active:opacity-80 transition-all duration-300"
+                className="block md:inline-block w-full md:w-auto border border-brass/70 text-white px-10 py-3 text-base md:text-lg font-semibold rounded-full min-h-[44px] flex items-center justify-center hover:bg-white hover:border-white hover:text-black active:opacity-80 transition-all duration-300"
               >
                 {dict.cta.button}
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -146,15 +174,19 @@ export default function Home({ params }: { params: { lang: string } }) {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
-              {dict.contact.title}
-            </h2>
-            <div className="w-16 h-px bg-brass/60 mx-auto"></div>
+            <Reveal>
+              <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-wide mb-5">
+                {dict.contact.title}
+              </h2>
+            </Reveal>
+            <Reveal variant="line" delay={200}>
+              <div className="w-16 h-px bg-brass/60 mx-auto"></div>
+            </Reveal>
           </div>
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Left Column - Contact Info */}
-            <div className="space-y-4 md:space-y-7 w-full">
+            <Reveal variant="left" className="space-y-4 md:space-y-7 w-full">
               {/* Address */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Vodičkova+34,+110+00+Nové+Město,+Czechia"
@@ -290,10 +322,13 @@ export default function Home({ params }: { params: { lang: string } }) {
                   gen22barbershop@gmail.com
                 </div>
               </a>
-            </div>
+            </Reveal>
 
             {/* Right Column - Google Map */}
-            <div className="rounded-xl md:rounded-2xl overflow-hidden border border-neutral-800 w-full mt-4 md:mt-0">
+            <Reveal
+              variant="right"
+              className="rounded-xl md:rounded-2xl overflow-hidden border border-neutral-800 w-full mt-4 md:mt-0"
+            >
               <iframe
                 src="https://www.google.com/maps?q=Vodičkova+34,+110+00+Nové+Město,+Czechia&output=embed"
                 width="100%"
@@ -305,7 +340,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                 className="w-full"
                 title="GEN22 BarberShop – Vodičkova 34, Praha 1"
               ></iframe>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -320,15 +355,36 @@ export default function Home({ params }: { params: { lang: string } }) {
         </div>
       </footer>
 
-      {/* Sticky Mobile Booking Button */}
-      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+      {/* Sticky Mobile Bar: book + call */}
+      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden flex gap-2">
         <a
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-white/95 backdrop-blur-md text-black text-center py-4 rounded-xl font-semibold shadow-xl min-h-[48px] flex items-center justify-center active:scale-[0.98] transition-all duration-200"
+          className="flex-1 bg-white/95 backdrop-blur-md text-black text-center py-3 rounded-full font-semibold shadow-xl min-h-[44px] flex items-center justify-center active:scale-[0.98] transition-all duration-200"
         >
           {dict.hero.cta}
+        </a>
+        <a
+          href="tel:+420776107688"
+          aria-label={dict.hero.call}
+          className="shrink-0 bg-black/85 backdrop-blur-md border border-brass/70 text-white px-5 rounded-full font-semibold shadow-xl min-h-[44px] flex items-center justify-center gap-2 active:scale-[0.98] transition-all duration-200"
+        >
+          <svg
+            className="w-5 h-5 text-brass"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+          {dict.hero.call}
         </a>
       </div>
     </main>

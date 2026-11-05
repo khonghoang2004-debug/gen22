@@ -64,6 +64,9 @@
 .hero-enter > *:nth-child(5) {
   animation-delay: 0.52s;
 }
+.hero-enter > *:nth-child(6) {
+  animation-delay: 0.6s;
+}
 
 /* Hero image settles from a slight zoom — plays once */
 @keyframes heroSettle {
@@ -79,7 +82,41 @@
   animation: heroSettle 16s ease-out forwards;
 }
 
+/* Scroll reveals — one-shot, triggered near the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  transform: translateX(-36px);
+}
+
+.reveal-right {
+  transform: translateX(36px);
+}
+
+.reveal-line {
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }
